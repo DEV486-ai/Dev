@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0f172a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Bong Browser</title>
+<style>
+body{margin:0;background:#0f172a;color:#e2e8f0;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:14px}
+.spin{width:44px;height:44px;border:3px solid #1e293b;border-top-color:#22c55e;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="spin"></div>
+<div style="font-size:12px;color:#64748b">Bong Browser লোড হচ্ছে...</div>
+<script>
+setTimeout(()=>{document.body.innerHTML='<h2 style="color:#22c55e">✅ Bong Browser কাজ করছে!</h2><p style="color:#64748b">Modified by Bong.Dev ⚡</p>';},1000);
+</script>
+</body>
+</html>
