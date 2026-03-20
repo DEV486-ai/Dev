@@ -1,23 +1,124 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#0f172a">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Bong Browser</title>
-<style>
-body{margin:0;background:#0f172a;color:#e2e8f0;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:14px}
-.spin{width:44px;height:44px;border:3px solid #1e293b;border-top-color:#22c55e;border-radius:50%;animation:sp .8s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-</style>
-</head>
-<body>
-<div class="spin"></div>
-<div style="font-size:12px;color:#64748b">Bong Browser লোড হচ্ছে...</div>
-<script>
-setTimeout(()=>{document.body.innerHTML='<h2 style="color:#22c55e">✅ Bong Browser কাজ করছে!</h2><p style="color:#64748b">Modified by Bong.Dev ⚡</p>';},1000);
-</script>
-</body>
-</html>
+body>
+<div id="loading"><div class="spin"></div><div style="font-size:12px;color:#64748b">Bong Browser লোড হচ্ছে...</div></div>
+<div id="auth">
+ <div class="acard">
+  <div class="logo"><div class="logo-i">💸</div><div class="logo-t">Bong Browser</div></div>
+  <div class="logo-s">Modified by Bong.Dev ⚡</div>
+  <div class="tabs"><button class="tbtn on" id="tbL" onclick="goL()">Login</button><button class="tbtn" id="tbR" onclick="goR()">Register</button></div>
+  <div class="form show" id="fL">
+   <div class="fg"><label class="fl">Gmail</label><input class="fi" id="lE" type="email" placeholder="yourname@gmail.com"></div>
+   <div class="fg"><label class="fl">Password</label><input class="fi" id="lP" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doL()"></div>
+   <div style="text-align:right;margin-bottom:8px"><a onclick="oReset()" style="font-size:11px;color:#22c55e;cursor:pointer">🔑 Password ভুলেছেন?</a></div>
+   <div class="msg" id="lM"></div>
+   <button class="btn btn-g" onclick="doL()">Login</button>
+   <div class="or"><div class="or-l"></div><span class="or-t">অথবা</span><div class="or-l"></div></div>
+   <button class="btn-google" onclick="doG()"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google Account</button>
+  </div>
+  <div class="form" id="fR">
+   <div class="fg"><label class="fl">পুরো নাম</label><input class="fi" id="rN" type="text" placeholder="আপনার নাম"></div>
+   <div class="fg"><label class="fl">Gmail</label><input class="fi" id="rE" type="email" placeholder="yourname@gmail.com"></div>
+   <div class="fg"><label class="fl">🎂 জন্ম তারিখ</label>
+    <div class="dob-row"><select class="fi" id="rD"><option value="">দিন</option></select><select class="fi" id="rMo"><option value="">মাস</option><option value="01">জানুয়ারি</option><option value="02">ফেব্রুয়ারি</option><option value="03">মার্চ</option><option value="04">এপ্রিল</option><option value="05">মে</option><option value="06">জুন</option><option value="07">জুলাই</option><option value="08">আগস্ট</option><option value="09">সেপ্টেম্বর</option><option value="10">অক্টোবর</option><option value="11">নভেম্বর</option><option value="12">ডিসেম্বর</option></select><select class="fi" id="rY"><option value="">বছর</option></select></div>
+   </div>
+   <div class="fg"><label class="fl">Referral Code</label><input class="fi" id="rRef" type="text" placeholder="Optional"></div>
+   <div class="fg"><label class="fl">Password</label><input class="fi" id="rP" type="password" placeholder="••••••••"></div>
+   <div class="msg" id="rM"></div>
+   <button class="btn btn-b" onclick="doR()">Register</button>
+   <div class="or"><div class="or-l"></div><span class="or-t">অথবা</span><div class="or-l"></div></div>
+   <button class="btn-google" onclick="doG()"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google Account</button>
+  </div>
+  <div style="text-align:center;font-size:10px;color:#475569;margin-top:12px">🔒 ডেটা সুরক্ষিত · <span style="color:#22c55e">Modified by Bong.Dev</span></div>
+ </div>
+</div>
+<div id="browser">
+ <div id="tabbar"><div class="tab on" id="tab0"><span class="tab-i">🏠</span><span class="tab-t" id="tt0">Home</span><button class="tab-x" onclick="ctab(event,0)">✕</button></div><button class="ntab" onclick="ntab()">+</button></div>
+ <div id="toolbar">
+  <button class="nb" id="bBk" onclick="gBk()" disabled><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <button class="nb" id="bFw" onclick="gFw()" disabled><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <button class="nb" onclick="location.reload()"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></button>
+  <button class="nb" onclick="gH()"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></button>
+  <div id="uw"><span id="lk">🔒</span><input id="ub" type="url" inputmode="url" placeholder="Search or type URL" onkeydown="if(event.key==='Enter')nav()"><button class="ustar" id="starB" onclick="aBk()">☆</button></div>
+  <div class="rtools"><button class="tb2" onclick="oDL()">⬇</button><div class="prof" id="profB" onclick="oMenu()">B</div><button class="tb2" onclick="oMenu()"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button></div>
+ </div>
+ <div id="bkbar"><button class="bki" onclick="go('https://www.google.com')">G Google</button><div class="bksep"></div><button class="bki" onclick="go('https://www.youtube.com')">▶ YouTube</button><div class="bksep"></div><button class="bki" onclick="go('https://www.facebook.com')">f Facebook</button><div class="bksep"></div><button class="bki" onclick="go('https://web.whatsapp.com')">💬 WhatsApp</button></div>
+ <div id="ct">
+  <div id="hp">
+   <div class="hlogo"><span class="lb">B</span><span class="lo">o</span><span class="ln">n</span><span class="lg">g</span><span style="color:#475569">.</span><span class="ld">D</span><span class="le">e</span><span class="lv">v</span></div>
+   <div class="hsub">Modified by Bong.Dev · Firebase</div>
+   <div class="bal-card hidden" id="balCard"><div><div style="font-size:11px;color:rgba(255,255,255,.7)">💰 Balance</div><div class="bal-v">₹<span id="balVal">0.00</span></div><div style="font-size:10px;color:rgba(255,255,255,.6)">Points: <span id="ptsVal">0</span></div></div><button class="earn-btn" onclick="doEarn()">📺 Earn</button></div>
+   <div class="ref-card hidden" id="refCard"><div><div style="font-size:11px;color:#64748b">👥 Referral Code</div><div class="ref-v" id="refVal">------</div><div style="font-size:10px;color:#64748b">Refer করলে ৫ পয়েন্ট!</div></div><button class="ref-copy" onclick="copyRef()">📋 Copy</button></div>
+   <div class="badge b18 hidden" id="b18">🔞 18+ Mode</div>
+   <div class="badge bsf hidden" id="bsf">🔒 Safe Mode</div>
+   <p class="hgt hidden" id="hgt"></p>
+   <div class="hsw"><div class="hsbox"><span style="font-size:16px;color:#64748b">🔍</span><input id="sq" type="search" placeholder="Search or type URL" onkeydown="if(event.key==='Enter')hS()"><button class="hsbtn" onclick="hS()">Search</button></div></div>
+   <div class="erow" id="erow"><button class="ec on" data-e="google" onclick="sE(this)">🔍 Google</button><button class="ec" data-e="bing" onclick="sE(this)">🅱 Bing</button><button class="ec" data-e="ddg" onclick="sE(this)">🦆 DDG</button><button class="ec" data-e="yahoo" onclick="sE(this)">Y! Yahoo</button></div>
+   <div class="sgrid">
+    <div class="sc" onclick="go('https://www.youtube.com')"><div class="sci" style="background:linear-gradient(135deg,#f00,#900)">▶</div><div class="scl">YouTube</div></div>
+    <div class="sc" onclick="go('https://www.google.com')"><div class="sci" style="background:linear-gradient(135deg,#4285f4,#34a853)">G</div><div class="scl">Google</div></div>
+    <div class="sc" onclick="go('https://www.facebook.com')"><div class="sci" style="background:linear-gradient(135deg,#1877f2,#0d5dbf)">f</div><div class="scl">Facebook</div></div>
+    <div class="sc" onclick="go('https://www.instagram.com')"><div class="sci" style="background:linear-gradient(135deg,#f09433,#dc2743)">📷</div><div class="scl">Instagram</div></div>
+    <div class="sc" onclick="go('https://twitter.com')"><div class="sci" style="background:linear-gradient(135deg,#000,#333)">𝕏</div><div class="scl">Twitter</div></div>
+    <div class="sc" onclick="go('https://web.whatsapp.com')"><div class="sci" style="background:linear-gradient(135deg,#25d366,#128c7e)">💬</div><div class="scl">WhatsApp</div></div>
+    <div class="sc" onclick="go('https://www.tiktok.com')"><div class="sci" style="background:linear-gradient(135deg,#010101,#ff0050)">♪</div><div class="scl">TikTok</div></div>
+    <div class="sc" onclick="go('https://t.me')"><div class="sci" style="background:linear-gradient(135deg,#2ca5e0,#1a7ab5)">✈</div><div class="scl">Telegram</div></div>
+    <div class="sc" onclick="go('https://www.netflix.com')"><div class="sci" style="background:linear-gradient(135deg,#e50914,#700)">N</div><div class="scl">Netflix</div></div>
+    <div class="sc" onclick="go('https://reddit.com')"><div class="sci" style="background:linear-gradient(135deg,#ff4500,#c30)">r/</div><div class="scl">Reddit</div></div>
+    <div class="sc" onclick="go('https://github.com')"><div class="sci" style="background:linear-gradient(135deg,#24292e,#555)">🐙</div><div class="scl">GitHub</div></div>
+    <div class="sc" onclick="go('https://www.amazon.in')"><div class="sci" style="background:linear-gradient(135deg,#ff9900,#c70)">a</div><div class="scl">Amazon</div></div>
+    <div class="sc sc18" onclick="go('https://www.xvideos.com')"><div class="sci" style="background:linear-gradient(135deg,#c00,#900)">🔴</div><div class="scl">XVideos</div></div>
+    <div class="sc sc18" onclick="go('https://www.xnxx.com')"><div class="sci" style="background:linear-gradient(135deg,#c50,#930)">🟠</div><div class="scl">XNXX</div></div>
+    <div class="sc sc18" onclick="go('https://www.pornhub.com')"><div class="sci" style="background:linear-gradient(135deg,#ff9000,#c60)">🟧</div><div class="scl">PornHub</div></div>
+    <div class="sc sc18" onclick="go('https://yandex.com')"><div class="sci" style="background:linear-gradient(135deg,#c00,#900)">Y</div><div class="scl">Yandex</div></div>
+   </div>
+   <div class="hwm">⚡ Modified by Bong.Dev · Firebase</div>
+  </div>
+ </div>
+ <div id="bnav"><div class="bni"><button class="bb" onclick="gBk()"><div class="bico">◀</div>Back</button><button class="bb" onclick="gFw()"><div class="bico">▶</div>Forward</button><button class="bb on" onclick="gH()"><div class="bico">⌂</div>Home</button><button class="bb" onclick="oHist()"><div class="bico">📋</div>History</button><button class="bb" onclick="oMenu()"><div class="bico">⋮</div>More</button></div></div>
+</div>
+<div id="admin">
+ <div class="ahdr"><div class="atitle">⚙️ Admin Panel — Bong.Dev</div><button class="alo" onclick="doLo()">🚪 Logout</button></div>
+ <div class="abody">
+  <div class="asec"><div class="asec-t">🔒 Visibility</div><div class="vis-box"><div><div class="vis-l">Admin Panel কে দেখবে?</div><div class="vis-s" id="visS">শুধু আমি</div></div><button class="tog on" id="visT" onclick="togVis()"></button></div></div>
+  <div class="asec"><div class="asec-t">📊 Statistics</div><div class="astats"><div class="stat"><div class="snum" id="sT">-</div><div class="slbl">মোট User</div></div><div class="stat"><div class="snum" id="s18" style="color:#f87171">-</div><div class="slbl">18+</div></div><div class="stat"><div class="snum" id="sSf" style="color:#4ade80">-</div><div class="slbl">Safe</div></div><div class="stat"><div class="snum" id="sBn" style="color:#fbbf24">-</div><div class="slbl">Banned</div></div></div></div>
+  <div class="asec"><div class="asec-t">💸 Withdrawals</div><div id="wdList"><div class="lem">Loading...</div></div></div>
+  <div class="asec"><div class="asec-t">👥 Users</div><input class="asrch" placeholder="🔍 খুঁজুন..." oninput="flU(this.value)"><div id="ulist"><div class="lem">Loading...</div></div></div>
+ </div>
+</div>
+<div class="po" id="pReset" onclick="cp('pReset')"><div class="pn" onclick="event.stopPropagation()"><div class="ph" onclick="cp('pReset')"></div><div class="ptit">🔑 Password Reset</div><div style="padding:12px 16px"><div class="fg"><label class="fl">Gmail</label><input class="fi" id="rsE" type="email" placeholder="yourname@gmail.com"></div><div class="msg" id="rsM"></div><button class="btn btn-g" onclick="rsSend()">Reset Email পাঠান ✉️</button></div></div></div>
+<div class="po" id="pWd" onclick="cp('pWd')"><div class="pn" onclick="event.stopPropagation()"><div class="ph" onclick="cp('pWd')"></div><div class="ptit">💸 Withdraw</div><div style="padding:12px 16px"><div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px;margin-bottom:12px;font-size:12px;color:#4ade80">💰 Balance: ₹<span id="wdBal">0</span></div><div class="fg"><label class="fl">Amount (min ₹10)</label><input class="fi" id="wdAmt" type="number" placeholder="50" min="10"></div><div class="fg"><label class="fl">UPI ID</label><input class="fi" id="wdUPI" type="text" placeholder="yourname@upi"></div><div class="msg" id="wdM"></div><button class="btn btn-g" onclick="doWithdraw()">💸 Request পাঠান</button></div></div></div>
+<div class="po" id="pMenu" onclick="cp('pMenu')"><div class="pn" onclick="event.stopPropagation()"><div class="ph" onclick="cp('pMenu')"></div><div class="ptit">Bong Browser <span style="font-size:10px;color:#64748b">Bong.Dev</span></div><div class="mi" onclick="ntab();cp('pMenu')"><span class="mico">📄</span>New tab</div><div class="mdiv"></div><div class="mi" onclick="oWithdraw()"><span class="mico">💸</span>Withdraw</div><div class="mi" onclick="doEarn()"><span class="mico">📺</span>Earn Points</div><div class="mdiv"></div><div class="mi" onclick="oDL()"><span class="mico">⬇</span>Downloads</div><div class="mi" onclick="oHist()"><span class="mico">📋</span>History</div><div class="mi" onclick="oBks()"><span class="mico">☆</span>Bookmarks</div><div class="mdiv"></div><div class="mi" onclick="shUI()"><span class="mico">👤</span>Account info</div><div class="mdiv"></div><div class="mi" onclick="doLo()" style="color:#f87171"><span class="mico">🚪</span>Logout</div></div></div>
+<div class="po" id="pHist" onclick="cp('pHist')"><div class="pn" onclick="event.stopPropagation()"><div class="ph" onclick="cp('pHist')"></div><div class="ptit">History <button onclick="clH()" style="background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.3);color:#f87171;border-radius:5px;padding:3px 9px;cursor:pointer;font-size:11px;font-family:Arial,sans-serif">Clear</button></div><div id="hList"></div></div></div>
+<div class="po" id="pBks" onclick="cp('pBks')"><div class="pn" onclick="event.stopPropagation()"><div class="ph" onclick="cp('pBks')"></div><div class="ptit">Bookmarks</div><div id="bkList"></div></div></div>
+<div class="po" id="pDL" onclick="cp('pDL')"><div class="pn" onclick="event.stopPropagation()"><div class="ph" onclick="cp('pDL')"></div><div class="ptit">⬇ Downloads</div><div style="padding:10px 16px;border-bottom:1px solid #334155"><div style="display:flex;gap:7px"><input id="dlU" type="url" placeholder="Download link..." style="flex:1;background:#0f172a;border:1px solid #334155;border-radius:7px;padding:8px 11px;color:#f1f5f9;font-size:12px;outline:none;font-family:Arial,sans-serif"><button onclick="stDL()" style="background:#22c55e;border:none;border-radius:7px;padding:8px 12px;color:#fff;cursor:pointer;font-size:13px">⬇</button></div></div><div id="dlList"></div></div></div>
+<div id="toast"></div>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import{getFirestore,doc,setDoc,getDoc,updateDoc,deleteDoc,collection,addDoc,getDocs,query,where,increment}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const fbApp=initializeApp({apiKey:"AIzaSyDaE8cAbtSgxe04EJDZ2CmfwOiNCtmLsMM",authDomain:"bongbrowser-99383.firebaseapp.com",projectId:"bongbrowser-99383",storageBucket:"bongbrowser-99383.firebasestorage.app",messagingSenderId:"935908727566",appId:"1:935908727566:web:3160eea2a4f0283ac3955f"});
+const auth=getAuth(fbApp),db=getFirestore(fbApp),gP=new GoogleAuthProvider();
+const ADMIN="kundudev811@gmail.com";
+const AI={login:"Login করতে Email ও Password দিন।",register:"Register করতে নাম, Gmail, DOB ও Password দিন।",earn:"Home এ Earn বাটনে ক্লিক করুন।",withdraw:"Menu → Withdraw এ যান।",referral:"Referral Code দিয়ে ৫ পয়েন্ট পাবেন!",default:"আমি BongBrowser AI! সাহায্য করতে পারি।"};
+(function(){var d=document.getElementById("rD");for(var i=1;i<=31;i++){var o=document.createElement("option");o.value=String(i).padStart(2,'0');o.textContent=i;d.appendChild(o);}var y=document.getElementById("rY"),cy=new Date().getFullYear();for(var yr=cy;yr>=1940;yr--){var o=document.createElement("option");o.value=yr;o.textContent=yr;y.appendChild(o);}})();
+function ag(dob){try{var d=new Date(dob),t=new Date();var a=t.getFullYear()-d.getFullYear();if(t.getMonth()<d.getMonth()||(t.getMonth()===d.getMonth()&&t.getDate()<d.getDate()))a--;return a;}catch{return 0;}}
+function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove("show"),3000);}
+function sm(id,m,c){var el=document.getElementById(id);if(el){el.textContent=m;el.className="msg"+(c?" "+c:"");}}
+onAuthStateChanged(auth,async(user)=>{
+ document.getElementById("loading").style.display="none";
+ if(user){
+  if(user.email.toLowerCase()===ADMIN.toLowerCase()){
+   document.getElementById("auth").classList.remove("show");
+   document.getElementById("admin").classList.add("show");
+   ldSt();ldU();ldWd();
+  }else{
+   var uRef=doc(db,"users",user.uid),uSnap=await getDoc(uRef);
+   if(uSnap.exists()){var data=uSnap.data();if(data.is_banned){await signOut(auth);document.getElementById("auth").classList.add("show");sm("lM","🚫 Account ban করা হয়েছে","err");return;}window.U={...data,uid:user.uid,email:user.email};}
+   else{var nd={name:user.displayName||user.email.split("@")[0],email:user.email,dob:"1999-01-01",is18:1,age:25,is_banned:false,points:0,balance:0,refCode:user.uid.slice(0,6).toUpperCase(),joined:new Date().toLocaleDateString("bn-BD")};await setDoc(uRef,nd);window.U={...nd,uid:user.uid};}
+   document.getElementById("auth").classList.remove("show");
+   document.getElementById("browser").classList.add("show");
+   updUI();
+  }
+ }else{document.getElementById("auth").classList.add("show");document.getElementById("browser").classList.remove("show");document.getElementById("admin").classList.remove("show");}
+});
+window.goL=()=>{document.getElementById("tbL").classList.add("on");document.getElementById("tbR").classList.remove("on");document.getElementById("fL").classList.add("show");document.getElementById("fR").classList.remove("show");};
+window.goR=()=>{document.getElementById("tbL").classList.remove("on");doc
