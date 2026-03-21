@@ -262,7 +262,7 @@ body>
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut,onAuthStateChanged,GoogleAuthProvider,signInWithPopup,sendPasswordResetEmail}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import{getFirestore,doc,setDoc,getDoc,updateDoc,deleteDoc,collection,addDoc,getDocs,query,where,increment}from"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-const fbApp=initializeApp({apiKey:"AIzaSyDaE8cAbtSgxe04EJDZ2CmfwOiNCtmLsMM",authDomain:"bongbrowser-99383.web.app",projectId:"bongbrowser-99383",storageBucket:"bongbrowser-99383.firebasestorage.app",messagingSenderId:"935908727566",appId:"1:935908727566:web:3160eea2a4f0283ac3955f"});
+const fbApp=initializeApp({apiKey:"AIzaSyDaE8cAbtSgxe04EJDZ2CmfwOiNCtmLsMM",authDomain:"bongbrowser-99383.firebaseapp.com",projectId:"bongbrowser-99383",storageBucket:"bongbrowser-99383.firebasestorage.app",messagingSenderId:"935908727566",appId:"1:935908727566:web:3160eea2a4f0283ac3955f"});
 const auth=getAuth(fbApp),db=getFirestore(fbApp),gP=new GoogleAuthProvider();
 const ADMIN="kundudev811@gmail.com";
 const AI={login:"Login করতে Email ও Password দিন।",register:"Register করতে নাম, Gmail, DOB ও Password দিন।",earn:"Home এ Earn বাটনে ক্লিক করুন।",withdraw:"Menu → Withdraw এ যান।",referral:"Referral Code দিয়ে ৫ পয়েন্ট পাবেন!",default:"আমি BongBrowser AI! সাহায্য করতে পারি।"};
