@@ -1,19 +1,16 @@
-name: Deploy to Firebase Hosting
+name: Deploy to GitHub Pages
+
 on:
   push:
-    branches:
-      - main
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    branches: [ main ]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: actions/checkout@v3
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          channelId: live
-          projectId: bongbrowser-99383
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
