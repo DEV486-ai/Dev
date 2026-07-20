@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>পাতা চা বাগান — সিলেটের খাঁটি চা</title>
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Hind+Siliguri:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <span class="brand">পাতা <span class="brand-accent">চা বাগান</span></span>
+    <nav class="nav-links">
+      <a href="#products">পণ্য</a>
+      <a href="#story">আমাদের গল্প</a>
+      <a href="#order" class="nav-cta">অর্ডার করুন</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">সিলেট · মৌলভীবাজার · হাতে বাছাই করা পাতা</p>
+      <h1>প্রতিটি কাপে<br>পাহাড়ের সতেজতা</h1>
+      <p class="hero-sub">আমরা সরাসরি সিলেট অঞ্চলের চা বাগান থেকে পাতা সংগ্রহ করি, নিজেরা প্রক্রিয়াজাত করি এবং সরাসরি আপনার ঠিকানায় পৌঁছে দিই — মাঝে কোনো এজেন্ট নেই।</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary">পণ্য দেখুন</a>
+        <a href="#story" class="btn btn-ghost">গল্প পড়ুন</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 320 380" class="steam-svg">
+        <ellipse cx="160" cy="330" rx="90" ry="18" fill="var(--clay)"/>
+        <path d="M75 330 L85 230 Q160 260 235 230 L245 330 Z" fill="var(--brown)"/>
+        <path d="M85 230 Q160 260 235 230 L228 210 Q160 235 92 210 Z" fill="var(--gold)"/>
+        <path class="steam" d="M140 210 C 120 170, 165 150, 145 110 C 130 80, 160 60, 150 30" />
+        <path class="steam steam-2" d="M185 210 C 205 175, 165 155, 190 120 C 205 95, 175 70, 190 40" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap story-inner">
+    <div class="story-mark">০১</div>
+    <div>
+      <h2>এস্টেট থেকে সরাসরি আপনার কাপে</h2>
+      <p>প্রতিটি ব্যাচ ছোট পরিসরে তৈরি হয় — বড় কারখানার মতো ভর উৎপাদন নয়। পাতা তোলার ৭২ ঘণ্টার মধ্যে প্যাকেজিং সম্পন্ন হয়, যাতে সুবাস অক্ষুণ্ণ থাকে।</p>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">আমাদের সংগ্রহ</span>
+      <h2>এই সপ্তাহের পণ্য</h2>
+    </div>
+    <div class="product-grid" id="product-grid">
+      <!-- Product cards are injected by script.js from products.js data,
+           so editing products.js updates this page automatically -->
+    </div>
+  </div>
+</section>
+
+<section class="order-section" id="order">
+  <div class="wrap order-inner">
+    <div class="section-head">
+      <span class="eyebrow">শেষ ধাপ</span>
+      <h2>আপনার অর্ডার নিশ্চিত করুন</h2>
+    </div>
+
+    <p class="flash" id="flash-box" hidden></p>
+
+    <form class="order-form" id="order-form">
+      <div class="form-row">
+        <label for="name">আপনার নাম</label>
+        <input type="text" id="name" name="name" placeholder="যেমন: রহিম উদ্দিন" required>
+      </div>
+      <div class="form-row">
+        <label for="phone">মোবাইল নম্বর</label>
+        <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" required>
+      </div>
+      <div class="form-row">
+        <label for="address">ডেলিভারি ঠিকানা</label>
+        <textarea id="address" name="address" rows="3" placeholder="বাসা/রোড, এলাকা, জেলা" required></textarea>
+      </div>
+      <div class="form-row form-row-split">
+        <div>
+          <label for="product-select">পণ্য</label>
+          <select id="product-select" name="product" required></select>
+        </div>
+        <div>
+          <label for="quantity">পরিমাণ</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full">অর্ডার নিশ্চিত করুন</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 পাতা চা বাগান, সিলেট। সকল অধিকার সংরক্ষিত।</p>
+  </div>
+</footer>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
