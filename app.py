@@ -1,73 +1,75 @@
-from flask import Flask, request, jsonify, send_from_directory
-import sqlite3
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+from google import genai
 import os
-from datetime import datetime
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "orders.db")
+app = Flask(__name__)
 
-app = Flask(__name__, static_folder=BASE_DIR, static_url_path="")
+CORS(app)
 
-
-def get_db():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-
-def init_db():
-    conn = get_db()
-    conn.execute(
-        """
-        CREATE TABLE IF NOT EXISTS orders (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            phone TEXT NOT NULL,
-            address TEXT NOT NULL,
-            product TEXT NOT NULL,
-            quantity INTEGER NOT NULL,
-            created_at TEXT NOT NULL
-        )
-        """
-    )
-    conn.commit()
-    conn.close()
+# Gemini API connection
+client = genai.Client(
+    api_key=os.environ.get("GEMINI_API_KEY")
+)
 
 
 @app.route("/")
 def home():
-    return send_from_directory(BASE_DIR, "index.html")
+    return jsonify({
+        "message": "BongBrowser AI Backend is Running"
+    })
 
 
-@app.route("/order", methods=["POST"])
-def order():
-    data = request.get_json(silent=True) or request.form
-
-    name = (data.get("name") or "").strip()
-    phone = (data.get("phone") or "").strip()
-    address = (data.get("address") or "").strip()
-    product = (data.get("product") or "").strip()
-    quantity = str(data.get("quantity") or "1").strip()
-
-    if not (name and phone and address and product):
-        return jsonify({"message": "দয়া করে সব ঘর পূরণ করুন।"}), 400
+@app.route("/api/chat", methods=["POST"])
+def chat():
 
     try:
-        quantity = max(1, int(quantity))
-    except ValueError:
-        quantity = 1
+        data = request.json
 
-    conn = get_db()
-    conn.execute(
-        "INSERT INTO orders (name, phone, address, product, quantity, created_at) VALUES (?, ?, ?, ?, ?, ?)",
-        (name, phone, address, product, quantity, datetime.utcnow().isoformat()),
-    )
-    conn.commit()
-    conn.close()
+        message = data.get("message", "")
+        language = data.get("language", "English")
 
-    return jsonify({"message": f"ধন্যবাদ {name}! আপনার অর্ডারটি গ্রহণ করা হয়েছে। শীঘ্রই আমরা যোগাযোগ করব।"})
+        prompt = f"""
+You are BongBrowser AI Assistant.
+
+Reply language:
+{language}
+
+User message:
+{message}
+
+Give a helpful and accurate answer.
+"""
+
+        result = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+
+        return jsonify({
+            "success": True,
+            "reply": result.text
+        })
+
+
+    except Exception as error:
+
+        return jsonify({
+            "success": False,
+            "error": str(error)
+        }), 500
+
+
+@app.route("/api/health")
+def health():
+
+    return jsonify({
+        "status": "BongBrowser AI OK"
+    })
 
 
 if __name__ == "__main__":
-    init_db()
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(
+        host="0.0.0.0",
+        port=5000
+)
